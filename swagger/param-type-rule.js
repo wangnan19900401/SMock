@@ -2,8 +2,8 @@
  * 参数类型验证
  * author: liaoyanli
  */
-let utils = require('jdcfe-smock/common/utils');
-let modelJS = require('jdcfe-smock/swagger/model');
+let utils = require('../common/utils');
+let modelJS = require('../swagger/model');
 //params 入参，checkObj 验证对象
 function validate(params, rules, GlobalDefinitions) {
     let errCount = 0; //类型不正确计数

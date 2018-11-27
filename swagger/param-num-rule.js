@@ -2,7 +2,7 @@
  * 参数个数验证
  * author: yangjinjun
  */
-let utils = require('jdcfe-smock/common/utils');
+let utils = require('../common/utils');
 
 //判断一个数组是否包含另一个数组
 function  isInclude(ary0, ary1) {

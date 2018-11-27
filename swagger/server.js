@@ -2,9 +2,9 @@
  * 服务相关express
  * author: liaoyanli
  */
-let utils = require('jdcfe-smock/common/utils');
-let paramsNumRule = require('jdcfe-smock/swagger/param-num-rule');
-let paramsTypeRule = require('jdcfe-smock/swagger/param-type-rule');
+let utils = require('../common/utils');
+let paramsNumRule = require('../swagger/param-num-rule');
+let paramsTypeRule = require('../swagger/param-type-rule');
 let express = require('express');
 var bodyParser = require("body-parser");
 let app = express();

@@ -1,11 +1,8 @@
 {
-    "name": "jdcfe-smock",
-    "version": "1.1.5",
-    "description": "分析Swagger文档，输出相应的mock数据，并启动node服务，供前端开发时调试使用，提高前端开发效率",
-    "main": "index.js",
-    "bin": {
-        "smock": "./bin/smock.js"
-    },
+    "name": "smock-core",
+    "version": "0.0.1",
+    "description": "SMock核心源码",
+    "main": "./swagger/swagger",
     "repository": {
         "type": "git",
         "url": "https://github.com/jdf2e/SMock.git"
