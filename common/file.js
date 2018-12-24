@@ -27,7 +27,7 @@ function makeFile(filePath, content) {
     return new Promise((resolve, reject) => {
         var stat = existsSync(filePath);
         if (stat) { //为true的话那么存在，如果为false不存在
-            utils.log(`${filePath} 已存在，内容已覆盖`);
+            // utils.log(`${filePath} 已存在，内容已覆盖`);
         }
         fs.writeFile(filePath, content, (err) => {
             if (!err) {

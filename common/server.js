@@ -2,7 +2,7 @@
  * 服务相关express
  * author: liaoyanli
  */
-let utils = require('../common/utils');
+let utils = require('./utils');
 let paramsNumRule = require('../swagger/param-num-rule');
 let paramsTypeRule = require('../swagger/param-type-rule');
 let express = require('express');

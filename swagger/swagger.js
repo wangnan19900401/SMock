@@ -9,7 +9,7 @@ let namespace = require('./../common/namespace');
 // let express = require('express');
 // let app = express();
 let configJS = require('./config');
-let serverJS = require('./server');
+let serverJS = require('../common/server');
 let modelJS = require('./model');
 
 let Config = {}; //获取到用户的相关配置
@@ -23,6 +23,7 @@ let MakeFilePromiseArray = []; //用于检测异步json文件写入是否全部�
 
 function init(c) {
     Config = configJS.dealConfig(c);
+    console.log(GlobalDefinitions);
     getJsonData();
 }
 
@@ -71,9 +72,14 @@ function analysisData(data) {
 function swaggerToJson(data) {
     let paths = data.paths; //所有路径
     GlobalDefinitions = data.definitions;
-    createMockDir(); //创建mock文件夹
-    looppath(paths); //遍历path，生成相应的文件
-    makeUrlsFile(); //产生urls汇聚文件
+    if(!Config.override && !isNew()) {
+        
+    }else {
+        createMockDir(); //创建mock文件夹
+        looppath(paths); //遍历path，生成相应的文件
+        makeUrlsFile(); //产生urls汇聚文件
+    }
+
     startServer(); //待所有mock的json文件创建或者修改完成后，再启动server
 }
 
@@ -124,9 +130,7 @@ function loopType(key, obj) {
         pathKey = typecontent.operationId; //接口的唯一名
         makeUrlsReal(pathKey, key, typekey); //pathKey为url信息的关键字,key为接口请求url路径、 typekey为接口请求类型， 请结合数据看
         makeMockJson(pathKey, typecontent, typekey, key); //生成单个文件的json数据并生成json文件
-
     }
-
 }
 
 //创建mock默认位置文件夹
@@ -139,7 +143,7 @@ function createMockDir() {
 //生成自定义指定文件目录
 function createCustomDir(dir) {
     file.createDir(dir);
-}
+
 
 //生成接口请求聚合文件内容
 function makeUrlsReal(pathKey, url, type) {
@@ -157,7 +161,7 @@ function makeUrlsFile() {
 
     if (Config.jsPath) { //用户如果有自定义文件目录，则需要生成至用户自定义目录
         let customFileDir = pathDeal.join(process.cwd(), Config.jsPath);
-        createCustomDir(customFilePath);
+        createCustomDir(customFileDir);
         jsFilePath = pathDeal.join(customFileDir, `${namespace.urlsRealName}.js`);
 
     }
@@ -208,6 +212,11 @@ function makeJsonFile(jsonData, fileName, typekey, url, typecontent) {
         utils.error(err);
     });
     MakeFilePromiseArray.push(makeFilePromise); //此处
+}
+
+//判断是否存在json文件
+function isNew() {
+    return !file.existsSync(pathDeal.join(process.cwd(), Config.mockDirName))
 }
 
 module.exports = {
