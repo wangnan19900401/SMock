@@ -31,3 +31,4 @@ smockCore.init({
 |projectName| string| 项目名，默认值swaggermock
 |mockPort| string| 本地mock服务启动后的端口，默认为3000
 |customProtocol| string| swagger文档支持的协议请求 http/https
+|override| boolean| 是否每次启动服务都覆盖原有json数据文件
