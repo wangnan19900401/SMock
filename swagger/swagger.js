@@ -23,7 +23,6 @@ let MakeFilePromiseArray = []; //用于检测异步json文件写入是否全部�
 
 function init(c) {
     Config = configJS.dealConfig(c);
-    console.log(GlobalDefinitions);
     getJsonData();
 }
 
@@ -72,14 +71,9 @@ function analysisData(data) {
 function swaggerToJson(data) {
     let paths = data.paths; //所有路径
     GlobalDefinitions = data.definitions;
-    if(!Config.override && !isNew()) {
-        
-    }else {
-        createMockDir(); //创建mock文件夹
-        looppath(paths); //遍历path，生成相应的文件
-        makeUrlsFile(); //产生urls汇聚文件
-    }
-
+    createMockDir(); //创建mock文件夹
+    looppath(paths); //遍历path，生成相应的文件
+    makeUrlsFile(); //产生urls汇聚文件
     startServer(); //待所有mock的json文件创建或者修改完成后，再启动server
 }
 
@@ -143,7 +137,7 @@ function createMockDir() {
 //生成自定义指定文件目录
 function createCustomDir(dir) {
     file.createDir(dir);
-
+}
 
 //生成接口请求聚合文件内容
 function makeUrlsReal(pathKey, url, type) {
@@ -202,9 +196,12 @@ function makeJsonFile(jsonData, fileName, typekey, url, typecontent) {
     let filePath = pathDeal.join2(process.cwd(), Config.mockDirName, jsonFileName);
 
     //此处需要用成功或者失败的回调，所以用异步，异步才有回调
-    let makeFilePromise = file.makeFile(filePath, content).then(() => {
+    let override = Config.override;//创建文件时，检测用户配置是否需要覆盖模拟数据
+    let makeFilePromise = file.makeFile(filePath, content,override).then((obj) => {
         //文件生成成功后，像express中插入服务
-        SucCounter++;
+        if(obj.isNewfile) {
+            SucCounter++;
+        }        
         serverJS.createServer(url, filePath, typekey, typecontent, GlobalDefinitions)
     }, (err) => {
         ErrorCounter++;

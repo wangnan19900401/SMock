@@ -12,7 +12,8 @@ let defaultConfig = {
     projectName: 'swagger', //项目名称
     mockPort: 3000, //模块数据服务端口
     customProtocol: 'http', //接口文档协议
-    jsPath: '' //指定生成的URL文件创建路径，相对当前项目根目录
+    jsPath: '', //指定生成的URL文件创建路径，相对当前项目根目录
+    override: false //默认启动服务时不覆盖模拟json数据
 };
 
 //处理参数

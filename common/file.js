@@ -22,20 +22,28 @@ function createDir(dir) {
     }
 }
 
-//创建文件并写入内容（异步）
-function makeFile(filePath, content) {
+//创建文件并写入内容（异步）,override是否覆盖数据
+function makeFile(filePath, content,override) {
     return new Promise((resolve, reject) => {
-        var stat = existsSync(filePath);
-        if (stat) { //为true的话那么存在，如果为false不存在
-            // utils.log(`${filePath} 已存在，内容已覆盖`);
+        var stat = existsSync(filePath);//为true的话那么存在，如果为false不存在
+        var isNewfile = false;
+        if((!override) && stat) {
+            isNewfile = false;
+            resolve({filePath,isNewfile});
+        } else {
+            fs.writeFile(filePath, content, (err) => {
+                if (!err) {
+                    isNewfile = true;
+                    if(stat) {
+                        utils.log(`${filePath} 已存在，内容已覆盖`);
+                    }
+                    resolve({filePath,isNewfile});
+                } else {
+                    reject(err);
+                }
+            });
         }
-        fs.writeFile(filePath, content, (err) => {
-            if (!err) {
-                resolve(filePath);
-            } else {
-                reject(err);
-            }
-        });
+        
     });
 }
 
