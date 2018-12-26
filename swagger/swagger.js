@@ -221,4 +221,4 @@ function isNew() {
 
 module.exports = {
     init: init
-};
+}

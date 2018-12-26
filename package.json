@@ -2,10 +2,14 @@
     "name": "smock-core",
     "version": "0.0.2",
     "description": "SMock核心源码",
-    "main": "./swagger/swagger",
+    "main": "./dist/main",
     "repository": {
         "type": "git",
         "url": "https://github.com/jdf2e/SMock.git"
+    },
+    "scripts": {
+        "dev": "npm run build && node dist/example/index",
+        "build": "tsc"
     },
     "keywords": [
         "swagger",
@@ -23,5 +27,6 @@
         "express": "^4.16.3",
         "mockjs": "^1.0.1-beta3",
         "request": "^2.87.0"
-    }
+    },
+    "devDependencies": {}
 }

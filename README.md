@@ -31,3 +31,13 @@ smockCore.init({
 |projectName| string| 项目名，默认值swaggermock
 |mockPort| string| 本地mock服务启动后的端口，默认为3000
 |customProtocol| string| swagger文档支持的协议请求 http/https
+
+## 代码架构
+
+代码采用 typescript。
+代码校验：ESLint
+
+## 项目命令
+
+npm run dev: 执行Demo
+npm run build: 打包编译
