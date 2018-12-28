@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const swagger_1 = require("./model/swagger");
 const file_1 = require("./file/file");
@@ -23,13 +31,23 @@ class Core {
         switch (this.options.type) {
             case 'swagger':
                 let swagger = new swagger_1.Swagger(this.options);
-                this.data = swagger.getData();
+                this.dataPromise = swagger.getData();
                 break;
         }
-        //执行文件层
-        let file = new file_1.File(this.options, this.data);
-        file.createJSONFile().then((a) => {
-            console.log(a);
+        this.createFile();
+    }
+    //创建文件操作
+    createFile() {
+        return __awaiter(this, void 0, void 0, function* () {
+            //执行文件层
+            yield this.dataPromise.then((data) => {
+                this.data = data;
+                // console.log(this.data);
+            });
+            let file = new file_1.File(this.options, this.data);
+            file.createJSONFile().then((a) => {
+                console.log(a);
+            });
         });
     }
 }

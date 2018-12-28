@@ -13,4 +13,8 @@ interface Config {
 interface Data {
     
 }
-export { Config, Data };
+
+interface UrlData {
+    url: String
+}
+export { Config, Data, UrlData };

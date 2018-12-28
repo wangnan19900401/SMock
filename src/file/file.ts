@@ -5,16 +5,12 @@ class File extends Base {
         super(opts, data);
     }
     //创建JSON文件
-    createJSONFile() {
-        return new Promise((resolve, reject) => {
-            resolve('1')
-        })
+    async createJSONFile() {
+        return '1';
     }
     // 创建URL文件
-    createUrlFile() {
-        return new Promise((resolve, reject) => {
-
-        })
+    async createUrlFile() {
+        return '1'
     }
 }
 

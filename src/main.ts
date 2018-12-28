@@ -6,6 +6,8 @@ class Core {
     options: Config;
     // 缓存数据
     data: Object;
+    //数据Promise
+    dataPromise: Promise<Object>;
     constructor(opts: Object) {
         // let config = Config;
         this.options = Object.assign({
@@ -26,13 +28,22 @@ class Core {
         switch(this.options.type) {
             case 'swagger':
                 let swagger = new Swagger(this.options);
-                this.data = swagger.getData();
+                this.dataPromise = swagger.getData();
             break;
         }
+        this.createFile();
+        
+    }
+    //创建文件操作
+    async createFile() {
         //执行文件层
+        await this.dataPromise.then((data: any) => {
+            this.data = data;
+            console.log(this.data);
+        })
         let file = new File(this.options, this.data);
         file.createJSONFile().then((a) => {
-            console.log(a);
+            // console.log(a);
         })
     }
 
