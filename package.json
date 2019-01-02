@@ -8,7 +8,7 @@
         "url": "https://github.com/jdf2e/SMock.git"
     },
     "scripts": {
-        "dev": "cross-env NODE_ENV=development gulp && node example/index.js",
+        "dev": "cross-env NODE_ENV=development gulp",
         "build": "gulp"
     },
     "keywords": [
