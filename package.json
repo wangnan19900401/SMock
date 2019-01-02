@@ -8,8 +8,8 @@
         "url": "https://github.com/jdf2e/SMock.git"
     },
     "scripts": {
-        "dev": "npm run build && node dist/example/index",
-        "build": "tsc"
+        "dev": "cross-env NODE_ENV=development gulp && node example/index.js",
+        "build": "gulp"
     },
     "keywords": [
         "swagger",
@@ -25,12 +25,19 @@
         "body-parser": "^1.18.3",
         "commander": "^2.19.0",
         "express": "^4.16.3",
-        "mockjs": "^1.0.1-beta3"
+        "gulp": "^4.0.0",
+        "gulp-typescript": "^5.0.0",
+        "gulp-uglify-es": "^1.0.4",
+        "mockjs": "^1.0.1-beta3",
+        "typescript": "^3.2.2"
     },
     "devDependencies": {
         "@types/axios": "^0.14.0",
         "@types/request": "^2.48.1",
         "@types/request-promise-native": "^1.0.15",
+        "cross-env": "^5.2.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-rename": "^1.4.0",
         "request": "^2.88.0",
         "request-promise-native": "^1.0.5"
     }

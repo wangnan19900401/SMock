@@ -9,35 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./../base/base");
-// import { axios } from 'axios';
-let axios = require('axios');
-class Server extends base_1.Base {
-    constructor(opts) {
-        super(opts, null);
+class File extends base_1.Base {
+    constructor(opts, data) {
+        super(opts, data);
     }
-    //启动服务
-    startServer() {
-        return new Promise((resolve, reject) => {
-        });
-    }
-    // 注入接口
-    addAPI() {
-        return new Promise((resolve, reject) => {
-        });
-    }
-    //获取数据
-    fetchData(opts) {
+    //创建JSON文件
+    createJSONFile() {
         return __awaiter(this, void 0, void 0, function* () {
-            let result;
-            yield axios({
-                url: opts.url
-            })
-                .then((data) => {
-                result = data.data;
-            });
-            return result;
+            return '1';
+        });
+    }
+    // 创建URL文件
+    createUrlFile() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return '1';
         });
     }
 }
-exports.Server = Server;
-//# sourceMappingURL=server.js.map
+exports.File = File;

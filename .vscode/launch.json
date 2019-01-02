@@ -5,7 +5,7 @@
             "name": "启动",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/dist/example/index",
+            "program": "${workspaceRoot}/example/index",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",

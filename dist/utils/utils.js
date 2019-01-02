@@ -14,4 +14,3 @@ function dealConfig(c) {
     return c; // Object.assign(defaultConfig, c);
 }
 exports.dealConfig = dealConfig;
-//# sourceMappingURL=utils.js.map

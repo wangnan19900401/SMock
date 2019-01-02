@@ -7,4 +7,3 @@ class Base {
     }
 }
 exports.Base = Base;
-//# sourceMappingURL=base.js.map

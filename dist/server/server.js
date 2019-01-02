@@ -1,8 +1,4 @@
 "use strict";
-/**
- *
- * 使用Swagger时，处理数据的文件
- */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -12,39 +8,35 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const server_1 = require("./../server/server");
-const utils_1 = require("./../utils/utils");
-class Swagger {
+const base_1 = require("./../base/base");
+// import { axios } from 'axios';
+let axios = require('axios');
+class Server extends base_1.Base {
     constructor(opts) {
-        this.config = utils_1.dealConfig(opts);
+        super(opts, null);
     }
-    getData() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let self = this;
-            let d;
-            yield self.getDataFromServer()
-                .then((data) => {
-                d = self.convertData(data);
-            });
-            return d;
+    //启动服务
+    startServer() {
+        return new Promise((resolve, reject) => {
         });
     }
-    getDataFromServer() {
+    // 注入接口
+    addAPI() {
+        return new Promise((resolve, reject) => {
+        });
+    }
+    //获取数据
+    fetchData(opts) {
         return __awaiter(this, void 0, void 0, function* () {
-            let server = new server_1.Server(this.config);
             let result;
-            yield server.fetchData({
-                url: `${this.config.customProtocol}://${this.config.host}${this.config.path}`
+            yield axios({
+                url: opts.url
             })
                 .then((data) => {
-                result = data;
+                result = data.data;
             });
             return result;
         });
     }
-    convertData(data) {
-        return data;
-    }
 }
-exports.Swagger = Swagger;
-//# sourceMappingURL=swagger.js.map
+exports.Server = Server;

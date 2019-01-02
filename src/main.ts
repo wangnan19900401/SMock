@@ -32,11 +32,10 @@ class Core {
             break;
         }
         this.createFile();
-        
     }
     //创建文件操作
     async createFile() {
-        //执行文件层
+        //执行文件层 
         await this.dataPromise.then((data: any) => {
             this.data = data;
             console.log(this.data);
@@ -48,4 +47,4 @@ class Core {
     }
 
 }
-export { Core };
+export { Core }
